@@ -179,10 +179,10 @@ Start the Docker containers.
 
 Server side:
 ```
-sudo docker run -dit --name wireguard-server -p 53222:53222/udp --cap-add=NET_ADMIN --cap-add=SYS_MODULE --sysctl="net.ipv4.conf.all.src_valid_mark=1" --sysctl="net.ipv4.ip_forward=1" wireguard:ubuntu /bin/sh
+sudo docker run -dit --name wireguard-server -p 53222:53222/udp --cap-add=NET_ADMIN --cap-add=SYS_MODULE --sysctl="net.ipv4.conf.all.src_valid_mark=1" --sysctl="net.ipv4.ip_forward=1" wireguard:alpine /bin/sh
 ```
 
 Client side: 
 ```
-sudo docker run -dit --name wireguard-client1 --cap-add=NET_ADMIN --cap-add=SYS_MODULE --sysctl="net.ipv4.conf.all.src_valid_mark=1" --sysctl="net.ipv4.ip_forward=1" wireguard:ubuntu /bin/sh
+sudo docker run -dit --name wireguard-client1 --cap-add=NET_ADMIN --cap-add=SYS_MODULE --sysctl="net.ipv4.conf.all.src_valid_mark=1" --sysctl="net.ipv4.ip_forward=1" wireguard:alpine /bin/sh
 ```
