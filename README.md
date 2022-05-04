@@ -172,6 +172,7 @@ Ping from your client to your server to check whether your config works!
 Build the Docker image:
 ```
 sudo docker build -t wireguard:ubuntu -f docker/UbuntuDockerfile .
+sudo docker build -t wireguard:alpine -f docker/AlpineDockerfile .
 ```
 
 Start the Docker containers.
