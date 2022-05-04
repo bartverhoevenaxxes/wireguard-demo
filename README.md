@@ -58,7 +58,7 @@ ListenPort = 53222
 SaveConfig = true
 
 ## VPN server's private key => Read from /etc/wireguard/privatekey. Replace this with your own key! ##
-PrivateKey = 0O7sdWfd5YI7O9pASH2eBNKw3AcnpUZ7rE2Y8fEs/n4=
+PrivateKey = yourServerPrivateKey
 ```
 
 Now, start Wireguard:
@@ -108,14 +108,14 @@ Now, create the Wireguard config file: ```/etc/wireguard/wg0.conf```
 ```
 [Interface]
 ## This Desktop/client's private key ##
-PrivateKey = 8DiclIGwxRJfeJByL+Xr/hh3fXX1GfgqX7ZZcNnjwkc=
+PrivateKey = yourClientPrivateKey
  
 ## Client ip address ##
 Address = 192.168.4.3/24
  
 [Peer]
 ## Wireguard server public key ##
-PublicKey = x1I+wUy0WsScA0e6SoGEHyQAHtIehCIvUrOZjJJUDnc=
+PublicKey = yourServerPublicKey
  
 ## Set ACL => Allow all hosts from network 192.168.4.0/24 ##
 AllowedIPs = 192.168.4.0/24
@@ -147,7 +147,7 @@ Change the file ``/etc/wireguard/wg0.conf`` and add following lines at the botto
 ```
 [Peer]
 ## Public key of the client. ##
-PublicKey = qhJN/yp/mH319WCNTSCDGmEw527HZz1SOOvST480fVg=
+PublicKey = yourClientPublicKey
 ## Client IP address (VPN IP) ##
 AllowedIPs = 192.168.4.3/32
 ```
@@ -161,7 +161,7 @@ sudo wg-quick up wg0
 ## Option 2: Add client public key via CLI
 Run the following command to add the client public key to the server Wireguard configuration:
 ```
-sudo wg set wg0 peer qhJN/yp/mH319WCNTSCDGmEw527HZz1SOOvST480fVg= allowed-ips 192.168.4.3/32
+sudo wg set wg0 peer yourClientPublicKey allowed-ips 192.168.4.3/32
 ```
 
 Ping from your client to your server to check whether your config works!
