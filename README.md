@@ -82,6 +82,12 @@ First install the Wireguard package on your client
 sudo apt install wireguard
 ```
 
+Allow IP forwarding on your server. Change the following values in the file ``/etc/sysctl.conf``:
+```
+net.ipv6.conf.all.forwarding = 1
+net.ipv4.ip_forward = 1
+```
+
 ### 2.2. Configure Wireguard
 
 The keys and config files have to be put inside the folder ``/etc/wireguard``
@@ -157,10 +163,10 @@ sudo wg-quick down wg0
 sudo wg-quick up wg0
 ```
 
-Ping from your client to your server to check whether your config works.
-
 ## Option 2: Add client public key via CLI
 Run the following command to add the client public key to the server Wireguard configuration:
 ```
 sudo wg set wg0 peer qhJN/yp/mH319WCNTSCDGmEw527HZz1SOOvST480fVg= allowed-ips 192.168.4.3/32
 ```
+
+Ping from your client to your server to check whether your config works!
