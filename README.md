@@ -116,7 +116,7 @@ Address = 192.168.4.3/24
 ## Wireguard server public key ##
 PublicKey = x1I+wUy0WsScA0e6SoGEHyQAHtIehCIvUrOZjJJUDnc=
  
-## Set ACL => Allow all hosts from network 192.168.4.0/24##
+## Set ACL => Allow all hosts from network 192.168.4.0/24 ##
 AllowedIPs = 192.168.4.0/24
  
 ## IP Address (external) public IPv4/IPv6 address and port ##
@@ -134,3 +134,24 @@ To check the status, run the command ``wg show``
 In order to allow a client to the Wireguard VPN, we must add the client public key to the Wireguard configuration of the server.
 
 To do so, you have 2 options:
+- Add client public key in wg0.conf file => Restart required
+- Add client public key via CLI => No restart required
+
+## Option 1. Add client public key to wg0.conf file
+Change the file ``/etc/wireguard/wg0.conf`` and add following lines at the bottom:
+
+```
+[Peer]
+## Public key of the client. ##
+PublicKey = qhJN/yp/mH319WCNTSCDGmEw527HZz1SOOvST480fVg=
+## Client IP address (VPN IP) ##
+AllowedIPs = 192.168.4.3/32
+```
+
+Then, restart the wireguard config
+```
+sudo wg-quick down wg0
+sudo wg-quick up wg0
+```
+
+Ping from your client to your server to check whether your config works.
