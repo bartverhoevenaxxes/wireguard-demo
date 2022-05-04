@@ -1,0 +1,3 @@
+FROM alpine:latest
+
+RUN apk add wireguard-tools vim iputils curl iperf3
