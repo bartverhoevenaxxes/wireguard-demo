@@ -68,11 +68,6 @@ sudo wg-quick up wg0
 
 To check the status, run the command ``wg show``
 
-To run Wireguard inside a container, use the following command:
-```
-sudo docker run -dit --name wireguard-server -p 53222:53222/udp --cap-add=NET_ADMIN --cap-add=SYS_MODULE --sysctl="net.ipv4.conf.all.src_valid_mark=1" --sysctl="net.ipv4.ip_forward=1" wireguard:alpine /bin/sh
-```
-
 ## 2. Client installation
 ### 2.1. Install Wireguard
 
@@ -170,3 +165,23 @@ sudo wg set wg0 peer qhJN/yp/mH319WCNTSCDGmEw527HZz1SOOvST480fVg= allowed-ips 19
 ```
 
 Ping from your client to your server to check whether your config works!
+
+
+## Run Wireguard inside a container
+
+Build the Docker image:
+```
+sudo docker build -t wireguard:ubuntu -f docker/UbuntuDockerfile .
+```
+
+Start the Docker containers.
+
+Server side:
+```
+sudo docker run -dit --name wireguard-server -p 53222:53222/udp --cap-add=NET_ADMIN --cap-add=SYS_MODULE --sysctl="net.ipv4.conf.all.src_valid_mark=1" --sysctl="net.ipv4.ip_forward=1" wireguard:ubuntu /bin/sh
+```
+
+Client side: 
+```
+sudo docker run -dit --name wireguard-client1 --cap-add=NET_ADMIN --cap-add=SYS_MODULE --sysctl="net.ipv4.conf.all.src_valid_mark=1" --sysctl="net.ipv4.ip_forward=1" wireguard:ubuntu /bin/sh
+```
