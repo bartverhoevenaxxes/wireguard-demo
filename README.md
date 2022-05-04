@@ -60,7 +60,12 @@ PrivateKey = 0O7sdWfd5YI7O9pASH2eBNKw3AcnpUZ7rE2Y8fEs/n4=
 
 Now, start Wireguard:
 ```
-suod wg-quick up wg0
+sudo wg-quick up wg0
 ```
 
-sudo docker run -dit --name wireguard-server -p 52333:52333/udp --cap-add=NET_ADMIN --cap-add=SYS_MODULE --sysctl="net.ipv4.conf.all.src_valid_mark=1" --sysctl="net.ipv4.ip_forward=1" wireguard:alpine /bin/sh
+To check the status, run the command ``wg show``
+
+To run Wireguard inside a container, use the following command:
+```
+sudo docker run -dit --name wireguard-server -p 53222:53222/udp --cap-add=NET_ADMIN --cap-add=SYS_MODULE --sysctl="net.ipv4.conf.all.src_valid_mark=1" --sysctl="net.ipv4.ip_forward=1" wireguard:alpine /bin/sh
+```
