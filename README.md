@@ -121,6 +121,9 @@ AllowedIPs = 192.168.4.0/24
  
 ## IP Address (external) public IPv4/IPv6 address and port ##
 Endpoint = 172.17.0.1:53222
+
+# Send a KeepAlive message each 25 seconds to the Wireguard server
+PersistentKeepalive = 25
 ```
 
 Now, start Wireguard:
@@ -137,7 +140,7 @@ To do so, you have 2 options:
 - Add client public key in wg0.conf file => Restart required
 - Add client public key via CLI => No restart required
 
-## Option 1. Add client public key to wg0.conf file
+## Option 1: Add client public key to wg0.conf file
 Change the file ``/etc/wireguard/wg0.conf`` and add following lines at the bottom:
 
 ```
@@ -155,3 +158,9 @@ sudo wg-quick up wg0
 ```
 
 Ping from your client to your server to check whether your config works.
+
+## Option 2: Add client public key via CLI
+Run the following command to add the client public key to the server Wireguard configuration:
+```
+sudo wg set wg0 peer qhJN/yp/mH319WCNTSCDGmEw527HZz1SOOvST480fVg= allowed-ips 192.168.4.3/32
+```
